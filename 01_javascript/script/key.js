@@ -1,9 +1,13 @@
-const keyDown = {};
+const isKeyDown = {};
 
 window.addEventListener('keydown', (event) => {
-  keyDown[event.key] = true;
+  isKeyDown[event.key] = true;
+
+  console.log(isKeyDown);
 });
 
 window.addEventListener('keyup', (event) => {
-  keyDown[event.key] = false;
+  isKeyDown[event.key] = false;
+
+  console.log(isKeyDown);
 });
