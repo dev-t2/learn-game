@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/learn-game/static/js/main.f10d442f.chunk.js",
+    "main.js.map": "/learn-game/static/js/main.f10d442f.chunk.js.map",
+    "runtime-main.js": "/learn-game/static/js/runtime-main.6cad6ba1.js",
+    "runtime-main.js.map": "/learn-game/static/js/runtime-main.6cad6ba1.js.map",
+    "static/js/2.79ca6190.chunk.js": "/learn-game/static/js/2.79ca6190.chunk.js",
+    "static/js/2.79ca6190.chunk.js.map": "/learn-game/static/js/2.79ca6190.chunk.js.map",
+    "index.html": "/learn-game/index.html",
+    "static/js/2.79ca6190.chunk.js.LICENSE.txt": "/learn-game/static/js/2.79ca6190.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6cad6ba1.js",
+    "static/js/2.79ca6190.chunk.js",
+    "static/js/main.f10d442f.chunk.js"
+  ]
+}
