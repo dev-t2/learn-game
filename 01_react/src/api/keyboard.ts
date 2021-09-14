@@ -1,4 +1,6 @@
-type Callback = (key: {}) => void;
+export type KeyboardEvent = { [key: string]: boolean };
+
+type Callback = (keyboardEvent: KeyboardEvent) => void;
 
 export const initialKeyboard = { ArrowLeft: false, ArrowRight: false };
 
