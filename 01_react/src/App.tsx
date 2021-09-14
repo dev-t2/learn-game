@@ -1,15 +1,15 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { keyboard } from './api';
+import { initialKeyboard, keyboard } from './api/keyboard';
 
 const App = () => {
-  const [key, setKey] = useState({});
+  const [keys, setKeys] = useState(initialKeyboard);
 
   const onKeyboard = useCallback((key: {}) => {
-    setKey((prev) => ({ ...prev, ...key }));
+    setKeys((prev) => ({ ...prev, ...key }));
   }, []);
 
-  console.log(key);
+  console.log(keys);
 
   useEffect(() => {
     keyboard(onKeyboard);

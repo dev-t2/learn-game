@@ -1,13 +1,17 @@
 type Callback = (key: {}) => void;
 
-const keyboard = (callback: Callback) => {
+export const initialKeyboard = { ArrowLeft: false, ArrowRight: false };
+
+export const keyboard = (callback: Callback) => {
   window.addEventListener('keydown', ({ key }) => {
-    callback({ [key]: true });
+    if (Object.keys(initialKeyboard).includes(key)) {
+      callback({ [key]: true });
+    }
   });
 
   window.addEventListener('keyup', ({ key }) => {
-    callback({ [key]: false });
+    if (Object.keys(initialKeyboard).includes(key)) {
+      callback({ [key]: false });
+    }
   });
 };
-
-export default keyboard;
