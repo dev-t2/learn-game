@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import { initialKeyboard, keyboard, KeyboardEvent } from './api/keyboard';
+import { Reset } from './components';
 
 const App = () => {
   const [keys, setKeys] = useState(initialKeyboard);
@@ -15,7 +16,13 @@ const App = () => {
     keyboard(onKeyboard);
   }, [onKeyboard]);
 
-  return <div>React App</div>;
+  return (
+    <>
+      <Reset />
+
+      <div>React App</div>
+    </>
+  );
 };
 
 export default memo(App);
