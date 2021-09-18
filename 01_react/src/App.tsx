@@ -2,16 +2,11 @@ import styled from '@emotion/styled';
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import { initialKeyboard, keyboard, KeyboardEvent } from './api/keyboard';
-import { Reset } from './components';
+import { Character, Reset } from './components';
 
 const Container = styled.div({
   height: '100vh',
-  backgroundColor: '#000000',
 });
-
-const CharacterContainer = styled.div({});
-
-const Character = styled.div({});
 
 const App = () => {
   const [keys, setKeys] = useState(initialKeyboard);
@@ -31,9 +26,9 @@ const App = () => {
       <Reset />
 
       <Container>
-        <CharacterContainer>
-          <Character></Character>
-        </CharacterContainer>
+        <Character motion="idle" />
+        <Character motion="run" />
+        <Character motion="attack" />
       </Container>
     </>
   );
