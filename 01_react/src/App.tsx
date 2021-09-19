@@ -1,35 +1,30 @@
-import styled from '@emotion/styled';
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { initialKeyboard, keyboard, KeyboardEvent } from './api/keyboard';
-import { Character, Reset } from './components';
-
-const Container = styled.div({
-  height: '100vh',
-});
+import {
+  initialKeyboard,
+  KeyboardEvent,
+  keyboardEventListener,
+} from './api/keyboard';
+import { Character, Reset, Screen } from './components';
 
 const App = () => {
-  const [keys, setKeys] = useState(initialKeyboard);
+  const [keyboard, setKeyboard] = useState(initialKeyboard);
 
-  const onKeyboard = useCallback((keyboardEvent: KeyboardEvent) => {
-    setKeys((prev) => ({ ...prev, ...keyboardEvent }));
+  const onKeyboard = useCallback((keyboard: KeyboardEvent) => {
+    setKeyboard((prev) => ({ ...prev, ...keyboard }));
   }, []);
 
   useEffect(() => {
-    keyboard(onKeyboard);
+    keyboardEventListener(onKeyboard);
   }, [onKeyboard]);
-
-  console.log(keys);
 
   return (
     <>
       <Reset />
 
-      <Container>
-        <Character motion="idle" />
-        <Character motion="run" />
-        <Character motion="attack" />
-      </Container>
+      <Screen>
+        <Character keyboard={keyboard} />
+      </Screen>
     </>
   );
 };
