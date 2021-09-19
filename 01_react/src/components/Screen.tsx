@@ -2,6 +2,7 @@ import { FC, memo, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
 const Container = styled.div({
+  position: 'relative',
   height: '100vh',
 });
 

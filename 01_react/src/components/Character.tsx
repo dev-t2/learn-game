@@ -1,20 +1,22 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import { clearInterval, setInterval } from 'timers';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Keyboard } from '../api/keyboard';
+import { IWeapon } from './Weapon';
 
 interface IContainer {
-  position: number;
+  left: number;
 }
 
-const Container = styled.div<IContainer>(({ position }) => ({
+const Container = styled.div<IContainer>(({ left }) => ({
   width: 377,
   height: 458,
   position: 'fixed',
   bottom: 0,
-  left: position,
+  left,
+  zIndex: 2,
 }));
 
 const spriteAnimation = keyframes`
@@ -40,12 +42,15 @@ const speed = 10;
 
 interface ICharacter {
   keyboard: Keyboard;
+  onAttack: (weapon: IWeapon) => void;
 }
 
-const Character: FC<ICharacter> = ({ keyboard }) => {
+const Character: FC<ICharacter> = ({ keyboard, onAttack }) => {
   const [isFlip, setIsFlip] = useState(false);
   const [motion, setMotion] = useState<Motion>('idle');
-  const [position, setPosition] = useState(0);
+  const [left, setLeft] = useState(0);
+
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,14 +62,14 @@ const Character: FC<ICharacter> = ({ keyboard }) => {
       ) {
         setIsFlip(true);
         setMotion('run');
-        setPosition((prev) => prev - speed);
+        setLeft((prev) => prev - speed);
       } else if (
         keyboard.ArrowLeft !== keyboard.ArrowRight &&
         keyboard.ArrowRight
       ) {
         setIsFlip(false);
         setMotion('run');
-        setPosition((prev) => prev + speed);
+        setLeft((prev) => prev + speed);
       } else {
         setMotion('idle');
       }
@@ -75,9 +80,18 @@ const Character: FC<ICharacter> = ({ keyboard }) => {
     };
   }, [keyboard]);
 
+  useEffect(() => {
+    if (motion === 'attack' && ref.current) {
+      onAttack({
+        left: left + ref.current.offsetWidth / 2,
+        bottom: ref.current.offsetHeight / 2,
+      });
+    }
+  }, [motion, onAttack, left]);
+
   return (
-    <Container position={position}>
-      <SpriteImage motion={motion} isFlip={isFlip} />
+    <Container left={left}>
+      <SpriteImage ref={ref} motion={motion} isFlip={isFlip} />
     </Container>
   );
 };
