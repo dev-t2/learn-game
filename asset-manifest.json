@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/learn-game/static/js/main.5debf2aa.chunk.js",
-    "main.js.map": "/learn-game/static/js/main.5debf2aa.chunk.js.map",
+    "main.js": "/learn-game/static/js/main.30f39724.chunk.js",
+    "main.js.map": "/learn-game/static/js/main.30f39724.chunk.js.map",
     "runtime-main.js": "/learn-game/static/js/runtime-main.6cad6ba1.js",
     "runtime-main.js.map": "/learn-game/static/js/runtime-main.6cad6ba1.js.map",
-    "static/js/2.f5e734ab.chunk.js": "/learn-game/static/js/2.f5e734ab.chunk.js",
-    "static/js/2.f5e734ab.chunk.js.map": "/learn-game/static/js/2.f5e734ab.chunk.js.map",
+    "static/js/2.c01e62d1.chunk.js": "/learn-game/static/js/2.c01e62d1.chunk.js",
+    "static/js/2.c01e62d1.chunk.js.map": "/learn-game/static/js/2.c01e62d1.chunk.js.map",
     "index.html": "/learn-game/index.html",
-    "static/js/2.f5e734ab.chunk.js.LICENSE.txt": "/learn-game/static/js/2.f5e734ab.chunk.js.LICENSE.txt"
+    "static/js/2.c01e62d1.chunk.js.LICENSE.txt": "/learn-game/static/js/2.c01e62d1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6cad6ba1.js",
-    "static/js/2.f5e734ab.chunk.js",
-    "static/js/main.5debf2aa.chunk.js"
+    "static/js/2.c01e62d1.chunk.js",
+    "static/js/main.30f39724.chunk.js"
   ]
 }
