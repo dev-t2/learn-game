@@ -1,11 +1,9 @@
 import { FC, memo, useEffect, useState } from 'react';
+import { clearInterval, setInterval } from 'timers';
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Keyboard } from '../api/keyboard';
-import { spriteAnimation } from '../api/animation';
-import { clearInterval, setInterval } from 'timers';
-
-const SPEED = 10;
 
 interface IContainer {
   position: number;
@@ -18,6 +16,11 @@ const Container = styled.div<IContainer>(({ position }) => ({
   bottom: 0,
   left: position,
 }));
+
+const spriteAnimation = keyframes`
+  from { background-position-x: 0 }
+  to { background-position-x: -3770px }
+`;
 
 type Motion = 'idle' | 'run' | 'attack';
 
@@ -33,35 +36,39 @@ const SpriteImage = styled.div<ISpriteImage>(({ motion, isFlip }) => ({
   animation: `${spriteAnimation} 0.5s infinite steps(10)`,
 }));
 
+const speed = 10;
+
 interface ICharacter {
   keyboard: Keyboard;
 }
 
 const Character: FC<ICharacter> = ({ keyboard }) => {
-  const [motion, setMotion] = useState<Motion>('idle');
   const [isFlip, setIsFlip] = useState(false);
+  const [motion, setMotion] = useState<Motion>('idle');
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (keyboard.ArrowLeft !== keyboard.ArrowRight) {
-        if (keyboard.ArrowLeft) {
-          setIsFlip(true);
-          setPosition((prev) => prev - SPEED);
-        }
-
-        if (keyboard.ArrowRight) {
-          setIsFlip(false);
-          setPosition((prev) => prev + SPEED);
-        }
-
-        setMotion('run');
-      } else if (keyboard.Space) {
+      if (keyboard.Space) {
         setMotion('attack');
+      } else if (
+        keyboard.ArrowLeft !== keyboard.ArrowRight &&
+        keyboard.ArrowLeft
+      ) {
+        setIsFlip(true);
+        setMotion('run');
+        setPosition((prev) => prev - speed);
+      } else if (
+        keyboard.ArrowLeft !== keyboard.ArrowRight &&
+        keyboard.ArrowRight
+      ) {
+        setIsFlip(false);
+        setMotion('run');
+        setPosition((prev) => prev + speed);
       } else {
         setMotion('idle');
       }
-    }, 20);
+    }, 10);
 
     return () => {
       clearInterval(interval);
