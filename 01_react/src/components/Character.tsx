@@ -1,13 +1,13 @@
 import { FC, memo } from 'react';
-import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
-
-const PUBLIC_URL = process.env.PUBLIC_URL;
+import styled from '@emotion/styled';
 
 const Container = styled.div({
   width: 377,
   height: 458,
 });
+
+type Motion = 'idle' | 'run' | 'attack';
 
 const Animation = keyframes`
   from { background-position-x: 0 }
@@ -15,17 +15,17 @@ const Animation = keyframes`
 `;
 
 interface ISpriteImage {
-  motion: 'idle' | 'run' | 'attack';
+  motion: Motion;
 }
 
 const SpriteImage = styled.div<ISpriteImage>(({ motion }) => ({
   height: '100%',
-  backgroundImage: `url(${PUBLIC_URL}/image/character/${motion}.png)`,
+  backgroundImage: `url(${process.env.PUBLIC_URL}/image/character/${motion}.png)`,
   animation: `${Animation} 0.5s infinite steps(10)`,
 }));
 
 interface ICharacter {
-  motion: 'idle' | 'run' | 'attack';
+  motion: Motion;
 }
 
 const Character: FC<ICharacter> = ({ motion }) => {
