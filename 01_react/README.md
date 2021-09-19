@@ -5,3 +5,4 @@
 - Emotion: https://emotion.sh/docs/@emotion/styled
   - Reset: https://www.npmjs.com/package/emotion-reset
   - Keyframes: https://emotion.sh/docs/keyframes
+- Nano ID: https://www.npmjs.com/package/nanoid
