@@ -7,7 +7,7 @@ import {
   keyboardEventListener,
 } from './api/keyboard';
 import { IWeapon } from './components/Weapon';
-import { Character, Preload, Reset, Screen, Weapon } from './components';
+import { Character, Reset, Screen, Weapon } from './components';
 
 const App = () => {
   const [keyboard, setKeyboard] = useState(initialKeyboard);
@@ -28,8 +28,6 @@ const App = () => {
   return (
     <>
       <Reset />
-
-      <Preload />
 
       <Screen>
         <Character keyboard={keyboard} onAttack={onAttack} />
